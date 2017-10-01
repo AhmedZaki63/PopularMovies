@@ -6,8 +6,8 @@
     <ImageView
         android:id="@+id/list_item_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="1sp"
+        android:layout_height="270dp"
+        android:padding="1dp"
         android:scaleType="fitXY"
         android:src="@drawable/placeholder" />
 </FrameLayout>

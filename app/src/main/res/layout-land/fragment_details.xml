@@ -1,70 +1,196 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="10"
-    tools:context="com.example.ahmed.popularmovies.DetailsFragment">
+    tools:context="com.example.ahmed.popularmovies.DetailsActivity">
 
-    <ImageView
-        android:id="@+id/details_image"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="6.5"
-        android:scaleType="fitXY"
-        android:src="@drawable/placeholder" />
+        android:orientation="horizontal"
+        android:weightSum="10"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3.5">
-
-        <LinearLayout
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_height="match_parent"
+            android:layout_weight="6.5">
 
-            <TextView
-                android:id="@+id/details_title"
+            <ImageView
+                android:id="@+id/details_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/placeholder" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/favourite_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layout_anchor="@id/details_image"
+                app:layout_anchorGravity="bottom|end"
+                app:srcCompat="@drawable/ic_favorite_border_24dp" />
+        </android.support.design.widget.CoordinatorLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Title"
-                android:textSize="35sp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <TextView
-                android:id="@+id/details_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="Date"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/details_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="@string/details_title"
+                    android:textSize="35sp" />
 
-            <TextView
-                android:id="@+id/details_vote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="Vote"
-                android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/details_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/details_date"
+                    android:textSize="25sp" />
 
-            <TextView
-                android:id="@+id/details_overview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="Overview"
-                android:textSize="20sp" />
-        </LinearLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/details_vote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/details_vote"
+                    android:textSize="25sp" />
 
-</LinearLayout>
+
+                <TextView
+                    android:id="@+id/details_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/details_overview"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10sp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/videos_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Trailers"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/videos_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="124dp" />
+
+                <LinearLayout
+                    android:id="@+id/no_trailers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="124dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/no_results" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="No Trailers"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_margin="10sp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/reviews_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Reviews"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="26sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/reviews_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/no_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/no_results" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="No Reviews"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </LinearLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    </android.support.design.widget.AppBarLayout>
+</RelativeLayout>

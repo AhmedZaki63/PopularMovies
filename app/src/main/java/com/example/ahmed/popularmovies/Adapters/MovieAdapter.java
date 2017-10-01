@@ -1,4 +1,4 @@
-package com.example.ahmed.popularmovies;
+package com.example.ahmed.popularmovies.Adapters;
 
 
 import android.content.Context;
@@ -8,16 +8,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.example.ahmed.popularmovies.Models.MovieResponse.Movie;
+import com.example.ahmed.popularmovies.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-class MovieAdapter extends BaseAdapter {
+public class MovieAdapter extends BaseAdapter {
 
     private ArrayList<Movie> movieArrayList;
     private Context context;
 
-    MovieAdapter(Context context, ArrayList<Movie> movieArrayList) {
+    public MovieAdapter(Context context, ArrayList<Movie> movieArrayList) {
         this.movieArrayList = movieArrayList;
         this.context = context;
     }
@@ -48,17 +50,10 @@ class MovieAdapter extends BaseAdapter {
 
         ImageView moviePoster = view.findViewById(R.id.list_item_image);
         Picasso.with(context)
-                .load(BASE_URL + getItem(i).getPoster())
+                .load(BASE_URL + getItem(i).getPoster_path())
+                .placeholder(R.drawable.placeholder)
                 .into(moviePoster);
 
         return view;
-    }
-
-    void addAll(ArrayList<Movie> movieList) {
-        movieArrayList.addAll(movieList);
-    }
-
-    void clear() {
-        movieArrayList.clear();
     }
 }
