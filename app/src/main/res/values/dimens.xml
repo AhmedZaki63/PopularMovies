@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="app_bar_height">300dp</dimen>
+    <dimen name="movie_item_height">270dp</dimen>
+    <dimen name="movie_column_width">180dp</dimen>
+    <dimen name="video_item_width">220dp</dimen>
+    <dimen name="video_item_height">124dp</dimen>
+    <dimen name="large_text">35sp</dimen>
+    <dimen name="normal_text">25sp</dimen>
+    <dimen name="small_text">20sp</dimen>
+</resources>

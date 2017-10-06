@@ -15,13 +15,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MyViewHolder> {
 
     private Context context;
-    private ArrayList<Trailer> videos;
+    private ArrayList<Trailer> trailerArrayList;
 
-    public TrailerAdapter(Context context, ArrayList<Trailer> videos) {
-        this.videos = videos;
+    public TrailerAdapter(Context context, ArrayList<Trailer> trailerArrayList) {
+        this.trailerArrayList = trailerArrayList;
         this.context = context;
     }
 
@@ -34,14 +37,14 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MyViewHo
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Picasso.with(context)
-                .load("https://img.youtube.com/vi/" + videos.get(position).getKey() + "/mqdefault.jpg")
+                .load("https://img.youtube.com/vi/" + trailerArrayList.get(position).getKey() + "/mqdefault.jpg")
                 .placeholder(R.drawable.video_placeholder)
                 .into(holder.imageView);
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String videoLink = "https://www.youtube.com/watch?v=" + videos.get(holder.getAdapterPosition()).getKey();
+                String videoLink = "https://www.youtube.com/watch?v=" + trailerArrayList.get(holder.getAdapterPosition()).getKey();
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoLink));
                 intent.putExtra("force_fullscreen", true);
                 context.startActivity(intent);
@@ -51,15 +54,21 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return videos.size();
+        return trailerArrayList.size();
+    }
+
+    public void addAll(ArrayList<Trailer> videos) {
+        trailerArrayList = videos;
+        notifyDataSetChanged();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.list_item_video)
         ImageView imageView;
 
         MyViewHolder(View view) {
             super(view);
-            imageView = view.findViewById(R.id.list_item_video);
+            ButterKnife.bind(this, view);
         }
     }
 }

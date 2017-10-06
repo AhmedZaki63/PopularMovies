@@ -14,8 +14,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieAdapter extends BaseAdapter {
 
+    @BindView(R.id.list_item_image)
+    ImageView moviePoster;
     private ArrayList<Movie> movieArrayList;
     private Context context;
 
@@ -46,14 +51,24 @@ public class MovieAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.movie_item, null);
         }
 
+        ButterKnife.bind(this, view);
         final String BASE_URL = "https://image.tmdb.org/t/p/w185";
 
-        ImageView moviePoster = view.findViewById(R.id.list_item_image);
         Picasso.with(context)
                 .load(BASE_URL + getItem(i).getPoster_path())
                 .placeholder(R.drawable.placeholder)
                 .into(moviePoster);
 
         return view;
+    }
+
+    public void setData(ArrayList<Movie> movieList) {
+        movieArrayList = movieList;
+        notifyDataSetChanged();
+    }
+
+    public void clearData() {
+        movieArrayList.clear();
+        notifyDataSetChanged();
     }
 }

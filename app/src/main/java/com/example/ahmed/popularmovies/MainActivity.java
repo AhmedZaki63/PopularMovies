@@ -2,6 +2,7 @@ package com.example.ahmed.popularmovies;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.ahmed.popularmovies.Models.MovieResponse;
@@ -20,6 +21,13 @@ public class MainActivity extends AppCompatActivity implements DataListener {
             mainFragment = (MainFragment) getSupportFragmentManager().findFragmentByTag("main_fragment");
         }
         mainFragment.setDataListener(this);
+        PreferenceManager.getDefaultSharedPreferences(this).registerOnSharedPreferenceChangeListener(mainFragment);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this).unregisterOnSharedPreferenceChangeListener(mainFragment);
     }
 
     @Override

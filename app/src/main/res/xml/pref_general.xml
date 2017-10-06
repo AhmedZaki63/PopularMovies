@@ -7,4 +7,7 @@
         android:key="@string/prefs_choices_list_key"
         android:title="@string/pref_title_choice" />
 
+    <Preference
+        android:key="@string/prefs_clear_favourite_key"
+        android:title="@string/prefs_title_clear_favourite" />
 </PreferenceScreen>

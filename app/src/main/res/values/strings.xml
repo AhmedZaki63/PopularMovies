@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Popular Movies</string>
-    <string name="title_activity_settings">Settings</string>
-
     <string name="no_vote_text">NoT Rated Yet</string>
-
+    <string name="title_activity_settings">Settings</string>
     <string name="action_settings">Settings</string>
 
     <!-- Sorting Choice -->
@@ -14,6 +12,12 @@
     <string name="details_date">Date</string>
     <string name="details_vote">Vote</string>
     <string name="details_overview">Overview</string>
+    <string name="no_reviews_text">No Reviews</string>
+    <string name="no_trailers_text">No Trailers</string>
+    <string name="trailers_header">Trailers</string>
+    <string name="reviews_header">Reviews</string>
+    <string name="author_text">author</string>
+    <string name="review_text">review</string>
     <string-array name="pref_choices_list_titles">
         <item>Popular</item>
         <item>Now Playing</item>
@@ -28,5 +32,9 @@
         <item>upcoming</item>
         <item>favourite</item>
     </string-array>
+
+    <!-- Clear Favourite -->
+    <string name="prefs_title_clear_favourite">Clear Favourite</string>
+    <string name="prefs_clear_favourite_key">prefs_clear_favourite_key</string>
 
 </resources>

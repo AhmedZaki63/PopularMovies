@@ -2,6 +2,7 @@ package com.example.ahmed.popularmovies;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -19,5 +20,16 @@ public class DetailsActivity extends AppCompatActivity {
         } else {
             detailsFragment = (DetailsFragment) getSupportFragmentManager().findFragmentByTag("details_fragment");
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case android.R.id.home:
+                super.onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

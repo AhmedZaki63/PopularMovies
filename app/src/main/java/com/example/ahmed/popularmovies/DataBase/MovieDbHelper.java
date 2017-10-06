@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 
 import com.example.ahmed.popularmovies.DataBase.MovieContract.MovieEntry;
 import com.example.ahmed.popularmovies.Models.MovieResponse.Movie;
@@ -14,9 +15,11 @@ import java.util.ArrayList;
 public class MovieDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "Movies.db";
     private static final int DATABASE_VERSION = 1;
+    private Context context;
 
     public MovieDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -40,8 +43,7 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Movie> getAllFromDatabase() {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        Cursor cursor = sqLiteDatabase.query(MovieEntry.TABLE_NAME, null, null, null, null, null, null);
+        Cursor cursor = context.getContentResolver().query(MovieEntry.CONTENT_URI, null, null, null, null);
 
         ArrayList<Movie> movies = new ArrayList<>();
         if (cursor.moveToFirst()) {
@@ -65,16 +67,13 @@ public class MovieDbHelper extends SQLiteOpenHelper {
     }
 
     public boolean isSaved(Movie movie) {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        return sqLiteDatabase.query(MovieEntry.TABLE_NAME,
-                new String[]{MovieEntry._ID},
-                MovieEntry._ID + " =? ",
-                new String[]{movie.getId()},
-                null, null, null, null).getCount() > 0;
+        Uri uri = MovieEntry.CONTENT_URI.buildUpon().appendPath(movie.getId()).build();
+        return context.getContentResolver().query(uri, null, null, null, null)
+                .getCount() > 0;
     }
 
     public void addToDatabase(Movie movie) {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(MovieEntry._ID, movie.getId());
         contentValues.put(MovieEntry.COLUMN_TITLE, movie.getTitle());
@@ -83,11 +82,16 @@ public class MovieDbHelper extends SQLiteOpenHelper {
         contentValues.put(MovieEntry.COLUMN_OVERVIEW, movie.getOverview());
         contentValues.put(MovieEntry.COLUMN_RELEASE_DATE, movie.getRelease_date());
         contentValues.put(MovieEntry.COLUMN_VOTE_AVERAGE, movie.getVote_average());
-        sqLiteDatabase.insert(MovieEntry.TABLE_NAME, null, contentValues);
+
+        context.getContentResolver().insert(MovieEntry.CONTENT_URI, contentValues);
     }
 
     public void removeFromDatabase(Movie movie) {
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        sqLiteDatabase.delete(MovieEntry.TABLE_NAME, MovieEntry._ID + "=" + movie.getId(), null);
+        Uri uri = MovieEntry.CONTENT_URI.buildUpon().appendPath(movie.getId()).build();
+        context.getContentResolver().delete(uri, null, null);
+    }
+
+    public void removeAllFromDatabase() {
+        context.getContentResolver().delete(MovieEntry.CONTENT_URI, null, null);
     }
 }

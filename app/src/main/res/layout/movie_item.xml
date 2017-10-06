@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/list_item_image"
         android:layout_width="match_parent"
-        android:layout_height="270dp"
+        android:layout_height="@dimen/movie_item_height"
         android:padding="1dp"
         android:scaleType="fitXY"
         android:src="@drawable/placeholder" />

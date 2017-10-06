@@ -8,7 +8,7 @@
         android:id="@+id/movies_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="180dp"
+        android:columnWidth="@dimen/movie_column_width"
         android:numColumns="auto_fit" />
 
     <ProgressBar

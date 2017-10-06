@@ -5,8 +5,8 @@
 
     <ImageView
         android:id="@+id/list_item_video"
-        android:layout_width="220dp"
-        android:layout_height="124dp"
+        android:layout_width="@dimen/video_item_width"
+        android:layout_height="@dimen/video_item_height"
         android:clickable="true"
         android:padding="1sp"
         android:scaleType="fitXY"

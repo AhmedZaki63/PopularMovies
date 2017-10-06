@@ -53,7 +53,8 @@
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
                     android:text="@string/details_title"
-                    android:textSize="35sp" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textSize="@dimen/large_text" />
 
                 <TextView
                     android:id="@+id/details_date"
@@ -63,7 +64,7 @@
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/details_date"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/normal_text" />
 
                 <TextView
                     android:id="@+id/details_vote"
@@ -73,7 +74,7 @@
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/details_vote"
-                    android:textSize="25sp" />
+                    android:textSize="@dimen/normal_text" />
 
 
                 <TextView
@@ -84,7 +85,7 @@
                     android:paddingBottom="5dp"
                     android:paddingTop="5dp"
                     android:text="@string/details_overview"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/small_text" />
 
                 <View
                     android:layout_width="match_parent"
@@ -98,37 +99,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Trailers"
+                    android:text="@string/trailers_header"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="26sp"
+                    android:textSize="@dimen/normal_text"
                     android:textStyle="bold" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/videos_view"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="124dp" />
+                    android:layout_height="@dimen/video_item_height">
 
-                <LinearLayout
-                    android:id="@+id/no_trailers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="124dp"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/no_results" />
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/trailers_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/no_trailers"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="No Trailers"
-                        android:textSize="20sp" />
-                </LinearLayout>
+                        android:text="@string/no_trailers_text"
+                        android:textSize="@dimen/normal_text"
+                        android:visibility="gone" />
+                </FrameLayout>
 
                 <View
                     android:layout_width="match_parent"
@@ -142,37 +135,24 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Reviews"
+                    android:text="@string/reviews_header"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="26sp"
+                    android:textSize="@dimen/normal_text"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/no_reviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/video_item_height"
+                    android:gravity="center"
+                    android:text="@string/no_reviews_text"
+                    android:textSize="@dimen/normal_text"
+                    android:visibility="gone" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/reviews_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:id="@+id/no_reviews"
-                    android:layout_width="wrap_content"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/no_results" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="No Reviews"
-                        android:textSize="20sp" />
-                </LinearLayout>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
@@ -184,7 +164,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"

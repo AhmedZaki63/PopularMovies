@@ -34,6 +34,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+
+        <provider
+            android:name="com.example.ahmed.popularmovies.DataBase.MovieProvider"
+            android:authorities="com.example.ahmed.popularmovies"
+            android:exported="false" />
+
     </application>
 
 </manifest>

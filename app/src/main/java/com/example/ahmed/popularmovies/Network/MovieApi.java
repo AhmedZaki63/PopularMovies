@@ -12,13 +12,13 @@ import retrofit2.http.Query;
 
 public interface MovieApi {
 
-    @GET("{sortByChoice}")
-    Call<MovieResponse> getMoviesData(@Path("sortByChoice") String sortByChoice
+    @GET("{sortType}")
+    Call<MovieResponse> getMoviesData(@Path("sortType") String sortType
             , @Query("language") String language
             , @Query("api_key") String apiKey);
 
     @GET("{id}/videos")
-    Call<TrailerResponse> getVideosData(@Path("id") String id
+    Call<TrailerResponse> getTrailersData(@Path("id") String id
             , @Query("api_key") String apiKey);
 
     @GET("{id}/reviews")

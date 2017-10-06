@@ -12,12 +12,15 @@ import com.example.ahmed.popularmovies.R;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHolder> {
-    private ArrayList<Review> reviews;
+    private ArrayList<Review> reviewArrayList;
     private Context context;
 
-    public ReviewAdapter(ArrayList<Review> reviews, Context context) {
-        this.reviews = reviews;
+    public ReviewAdapter(ArrayList<Review> reviewArrayList, Context context) {
+        this.reviewArrayList = reviewArrayList;
         this.context = context;
     }
 
@@ -29,22 +32,29 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(ReviewAdapter.MyViewHolder holder, int position) {
-        holder.author.setText(reviews.get(holder.getAdapterPosition()).getAuthor());
-        holder.content.setText(reviews.get(holder.getAdapterPosition()).getContent());
+        holder.author.setText(reviewArrayList.get(holder.getAdapterPosition()).getAuthor());
+        holder.content.setText(reviewArrayList.get(holder.getAdapterPosition()).getContent());
     }
 
     @Override
     public int getItemCount() {
-        return reviews.size();
+        return reviewArrayList.size();
+    }
+
+    public void setData(ArrayList<Review> videos) {
+        reviewArrayList = videos;
+        notifyDataSetChanged();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView author, content;
+        @BindView(R.id.author)
+        TextView author;
+        @BindView(R.id.review)
+        TextView content;
 
         MyViewHolder(View view) {
             super(view);
-            author = view.findViewById(R.id.author);
-            content = view.findViewById(R.id.review);
+            ButterKnife.bind(this, view);
         }
     }
 }
